@@ -843,6 +843,8 @@ function writeHtml() {
   htmlOut.writeln('<html>');
   htmlOut.writeln('<head>');
   htmlOut.writeln('    <meta charset="utf-8">');
+  htmlOut.writeln('    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
+  htmlOut.writeln('    <meta name="viewport" content="width=640"/>');
   htmlOut.writeln('    <title>' + hdr.psdName +  ' export</title>');
   htmlOut.writeln('    <link rel="stylesheet" href="' + hdr.prefix + '.css' + '">');
   htmlOut.writeln('</head>');
@@ -851,10 +853,7 @@ function writeHtml() {
 
   // Photoshop extracts top first; we'll put em on the page bottom first
   for (idx; idx >= 0; idx -= 1) {
-
-    htmlOut.writeln('    <div id="' + images[idx].name + '">');
-    htmlOut.writeln('          <img src="'+ images[idx].name + hdr.extension + '">');
-    htmlOut.writeln('    </div>');
+      htmlOut.writeln('    <img src="'+ images[idx].name + hdr.extension + '" class=" '+images[idx].name+' ">');
   }
 
   htmlOut.writeln('</div>');
@@ -880,10 +879,12 @@ function writeCss() {
   cssOut.open('w');
   cssOut.writeln('/* exported css for ' + hdr.psdName +  ' */');
   cssOut.writeln('\n');
+  cssOut.writeln('* { margin: 0px; padding:0px;}');
+  cssOut.writeln('\n');
   cssOut.writeln('body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }');
   cssOut.writeln('\n');
   cssOut.writeln('#container {');
-  cssOut.writeln('    margin: 5px auto;');
+  cssOut.writeln('    margin: 0 auto;');
   cssOut.writeln('    position: relative;');
   cssOut.writeln('    padding: 0px;');
   cssOut.writeln('    width: ' + hdr.psdWidth + 'px;');
@@ -895,7 +896,7 @@ function writeCss() {
   for (idx; idx >= 0; idx -= 1) {
 
     cssOut.writeln('\n');
-    cssOut.writeln('#' + images[idx].name + ' {');
+    cssOut.writeln('.' + images[idx].name + ' {');
     cssOut.writeln('    position: absolute;');
     cssOut.writeln('    top:    ' + images[idx].top + 'px;');
     cssOut.writeln('    left:   ' + images[idx].left + 'px;');
