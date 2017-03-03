@@ -11,7 +11,7 @@ var imgInput = function () {
      },
     "images" : [
       {
-         "name"     : "bigBuckBunny-squirrel-4-sky",
+         "name"     : "bigBuckBunny-squirrel-sky-4",
          "extension": ".png",
          "left"     : 0,
          "top"      : 0,
@@ -19,7 +19,7 @@ var imgInput = function () {
          "height"   : 363
       },
       {
-         "name"     : "bigBuckBunny-squirrel-3-cloud-left",
+         "name"     : "bigBuckBunny-squirrel-cloud-left-3",
          "extension": ".png",
          "left"     : 0,
          "top"      : 0,
@@ -27,7 +27,7 @@ var imgInput = function () {
          "height"   : 131
       },
       {
-         "name"     : "bigBuckBunny-squirrel-2-cloud-right",
+         "name"     : "bigBuckBunny-squirrel-cloud-right-2",
          "extension": ".png",
          "left"     : 376,
          "top"      : 155,
@@ -35,7 +35,7 @@ var imgInput = function () {
          "height"   : 208
       },
       {
-         "name"     : "bigBuckBunny-squirrel-1-tree",
+         "name"     : "bigBuckBunny-squirrel-tree-1",
          "extension": ".png",
          "left"     : 0,
          "top"      : 25,
@@ -43,7 +43,7 @@ var imgInput = function () {
          "height"   : 338
       },
       {
-         "name"     : "bigBuckBunny-squirrel-0-squirrel",
+         "name"     : "bigBuckBunny-squirrel-squirrel-0",
          "extension": ".png",
          "left"     : 194,
          "top"      : 66,

@@ -1,0 +1,82 @@
+/* exported json for Fish.psd */
+
+
+var imgInput = function () {
+
+
+  var input = {
+    "container" : {
+      "width"    : 400,
+      "height"   : 257
+     },
+    "images" : [
+      {
+         "name"     : "Fish-Background-7",
+         "extension": ".png",
+         "left"     : 0,
+         "top"      : 0,
+         "width"    : 400,
+         "height"   : 257
+      },
+      {
+         "name"     : "Fish-PurpleFish-6",
+         "extension": ".png",
+         "left"     : 11,
+         "top"      : 13,
+         "width"    : 369,
+         "height"   : 235
+      },
+      {
+         "name"     : "Fish-RainbowFish-5",
+         "extension": ".png",
+         "left"     : 100,
+         "top"      : 0,
+         "width"    : 300,
+         "height"   : 257
+      },
+      {
+         "name"     : "Fish-YellowFish-4",
+         "extension": ".png",
+         "left"     : 58,
+         "top"      : 11,
+         "width"    : 342,
+         "height"   : 246
+      },
+      {
+         "name"     : "Fish-ColorfulFish-3",
+         "extension": ".png",
+         "left"     : 18,
+         "top"      : 38,
+         "width"    : 204,
+         "height"   : 204
+      },
+      {
+         "name"     : "Fish-SmallBubbles-2",
+         "extension": ".png",
+         "left"     : 6,
+         "top"      : 0,
+         "width"    : 394,
+         "height"   : 257
+      },
+      {
+         "name"     : "Fish-LiquifiedBubbles-1",
+         "extension": ".png",
+         "left"     : 1,
+         "top"      : 0,
+         "width"    : 399,
+         "height"   : 257
+      },
+      {
+         "name"     : "Fish-Bubbles-0",
+         "extension": ".png",
+         "left"     : 0,
+         "top"      : 0,
+         "width"    : 396,
+         "height"   : 257
+      }
+    ]
+  };
+
+
+  return JSON.stringify(input);
+}

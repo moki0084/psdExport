@@ -1,0 +1,74 @@
+/* exported json for Smart Objects.psd */
+
+
+var imgInput = function () {
+
+
+  var input = {
+    "container" : {
+      "width"    : 731,
+      "height"   : 469
+     },
+    "images" : [
+      {
+         "name"     : "SmartObjects-_-6",
+         "extension": ".png",
+         "left"     : 0,
+         "top"      : 0,
+         "width"    : 731,
+         "height"   : 469
+      },
+      {
+         "name"     : "SmartObjects-Layer1-5",
+         "extension": ".png",
+         "left"     : 0,
+         "top"      : 0,
+         "width"    : 731,
+         "height"   : 309
+      },
+      {
+         "name"     : "SmartObjects-DJcopy6-4",
+         "extension": ".png",
+         "left"     : 497,
+         "top"      : 122,
+         "width"    : 227,
+         "height"   : 226
+      },
+      {
+         "name"     : "SmartObjects-DJcopy7-3",
+         "extension": ".png",
+         "left"     : 44,
+         "top"      : 122,
+         "width"    : 227,
+         "height"   : 226
+      },
+      {
+         "name"     : "SmartObjects-DJcopy2-2",
+         "extension": ".png",
+         "left"     : 350,
+         "top"      : 73,
+         "width"    : 324,
+         "height"   : 317
+      },
+      {
+         "name"     : "SmartObjects-DJcopy-1",
+         "extension": ".png",
+         "left"     : 74,
+         "top"      : 73,
+         "width"    : 324,
+         "height"   : 317
+      },
+      {
+         "name"     : "SmartObjects-DJ-0",
+         "extension": ".png",
+         "left"     : 163,
+         "top"      : 40,
+         "width"    : 405,
+         "height"   : 369
+      }
+    ]
+  };
+
+
+  return JSON.stringify(input);
+}

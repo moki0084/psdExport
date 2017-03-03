@@ -1,0 +1,80 @@
+/* exported css for Smart Objects.psd */
+
+
+* { margin: 0px; padding:0px;}
+
+
+body {background: hsl(229, 47%, 9%); }
+
+
+#container {
+    margin: 0 auto;
+    position: relative;
+    padding: 0px;
+    width: 731px;
+    height: 469px;
+    background: #000;
+}
+
+
+.SmartObjects-_-6 {
+    position: absolute;
+    top:    0px;
+    left:   0px;
+    height: 469px;
+    width:  731px;
+}
+
+
+.SmartObjects-Layer1-5 {
+    position: absolute;
+    top:    0px;
+    left:   0px;
+    height: 309px;
+    width:  731px;
+}
+
+
+.SmartObjects-DJcopy6-4 {
+    position: absolute;
+    top:    122px;
+    left:   497px;
+    height: 226px;
+    width:  227px;
+}
+
+
+.SmartObjects-DJcopy7-3 {
+    position: absolute;
+    top:    122px;
+    left:   44px;
+    height: 226px;
+    width:  227px;
+}
+
+
+.SmartObjects-DJcopy2-2 {
+    position: absolute;
+    top:    73px;
+    left:   350px;
+    height: 317px;
+    width:  324px;
+}
+
+
+.SmartObjects-DJcopy-1 {
+    position: absolute;
+    top:    73px;
+    left:   74px;
+    height: 317px;
+    width:  324px;
+}
+
+
+.SmartObjects-DJ-0 {
+    position: absolute;
+    top:    40px;
+    left:   163px;
+    height: 369px;
+    width:  405px;
+}

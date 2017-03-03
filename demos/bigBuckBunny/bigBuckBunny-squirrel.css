@@ -1,11 +1,14 @@
 /* exported css for bigBuckBunny-squirrel.psd */
 
 
-body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
+* { margin: 0px; padding:0px;}
+
+
+body {background: hsl(229, 47%, 9%); }
 
 
 #container {
-    margin: 5px auto;
+    margin: 0 auto;
     position: relative;
     padding: 0px;
     width: 640px;
@@ -14,7 +17,7 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-#bigBuckBunny-squirrel-4-sky {
+.bigBuckBunny-squirrel-sky-4 {
     position: absolute;
     top:    0px;
     left:   0px;
@@ -23,7 +26,7 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-#bigBuckBunny-squirrel-3-cloud-left {
+.bigBuckBunny-squirrel-cloud-left-3 {
     position: absolute;
     top:    0px;
     left:   0px;
@@ -32,7 +35,7 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-#bigBuckBunny-squirrel-2-cloud-right {
+.bigBuckBunny-squirrel-cloud-right-2 {
     position: absolute;
     top:    155px;
     left:   376px;
@@ -41,7 +44,7 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-#bigBuckBunny-squirrel-1-tree {
+.bigBuckBunny-squirrel-tree-1 {
     position: absolute;
     top:    25px;
     left:   0px;
@@ -50,7 +53,7 @@ body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }
 }
 
 
-#bigBuckBunny-squirrel-0-squirrel {
+.bigBuckBunny-squirrel-squirrel-0 {
     position: absolute;
     top:    66px;
     left:   194px;

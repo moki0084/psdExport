@@ -61,10 +61,10 @@ var strAlertNeedMultipleLayers = localize("$$$/JavaScripts/ExportLayersToFiles/N
 var strAlertWasSuccessful = localize("$$$/JavaScripts/ExportLayersToFiles/Success= was successful.");
 var strUnexpectedError = localize("$$$/JavaScripts/ExportLayersToFiles/Unexpected=Unexpected error");
 var strMessage = localize("$$$/JavaScripts/ExportLayersToFiles/Message=Export Layers To Files action settings");
-var stretQuality = localize( "$$$/locale_specific/JavaScripts/ExportLayersToFiles/ETQualityLength=30" );
-var stretDestination = localize( "$$$/locale_specific/JavaScripts/ExportLayersToFiles/ETDestinationLength=160" );
-var strddFileType = localize( "$$$/locale_specific/JavaScripts/ExportLayersToFiles/DDFileType=100" );
-var strpnlOptions = localize( "$$$/locale_specific/JavaScripts/ExportLayersToFiles/PNLOptions=100" );
+var stretQuality = localize("$$$/locale_specific/JavaScripts/ExportLayersToFiles/ETQualityLength=30");
+var stretDestination = localize("$$$/locale_specific/JavaScripts/ExportLayersToFiles/ETDestinationLength=160");
+var strddFileType = localize("$$$/locale_specific/JavaScripts/ExportLayersToFiles/DDFileType=100");
+var strpnlOptions = localize("$$$/locale_specific/JavaScripts/ExportLayersToFiles/PNLOptions=100");
 var strPNG8Options = localize("$$$/JavaScripts/ExportLayersToFiles/PNG8Options=PNG-8 Options:");
 var strCheckboxPNGTransparency = localize("$$$/JavaScripts/ExportLayersToFiles/Transparency=Transparency");
 var strCheckboxPNGInterlaced = localize("$$$/JavaScripts/ExportLayersToFiles/Interlaced=Interlaced");
@@ -92,12 +92,12 @@ var dlgMain;
 // several globals to capture export vars for the text files
 
 var exportHeader = {
-        psdName   : '',
-        psdWidth  : 0,
-        psdHeight : 0,
-        extension : '',
-        prefix    : '',
-        outDir    : ''
+  psdName: '',
+  psdWidth: 0,
+  psdHeight: 0,
+  extension: '',
+  prefix: '',
+  outDir: ''
 };
 
 // the array of image data to export, and its index
@@ -113,10 +113,10 @@ main();
  *   Input: string and a default number
  *   Return: a number
 */
-function strToIntWithDefault( s, n ) {
+function strToIntWithDefault(s, n) {
 
   var onlyNumbers = /[^0-9]/g,
-      t = s.replace( onlyNumbers, '' );
+    t = s.replace(onlyNumbers, '');
 
   t = parseInt(t, 10);
 
@@ -134,9 +134,9 @@ function strToIntWithDefault( s, n ) {
  */
 function webStr(strIn) {
   var ch,
-      idx = 0,
-      len = strIn.length > 120 ? 120 : strIn.length,
-      strOut = '';
+    idx = 0,
+    len = strIn.length > 120 ? 120 : strIn.length,
+    strOut = '';
 
   for (idx; idx < len; idx += 1) {
 
@@ -147,13 +147,10 @@ function webStr(strIn) {
       strOut += strIn.charAt(idx);
     } else if (ch === '_' || ch === '-') {
       strOut += strIn.charAt(idx);
-    } else {
-      if (idx === 0) {
-        strOut += 'x';
-      } else {
-        strOut += '-';
-      }
     }
+  }
+  if (strOut == '') {
+    strOut = '_'
   }
   return strOut;
 }
@@ -167,14 +164,14 @@ function webStr(strIn) {
 function settingDialog(exportInfo) {
 
   var brush,
-      destination,
-      result,
-      testFolder;
+    destination,
+    result,
+    testFolder;
 
   dlgMain = new Window('dialog', strTitle);
 
   // match our dialog background color to the host application
-  brush = dlgMain.graphics.newBrush (dlgMain.graphics.BrushType.THEME_COLOR, 'appDialogBackground');
+  brush = dlgMain.graphics.newBrush(dlgMain.graphics.BrushType.THEME_COLOR, 'appDialogBackground');
   dlgMain.graphics.backgroundColor = brush;
   dlgMain.graphics.disabledBackgroundColor = dlgMain.graphics.backgroundColor;
 
@@ -203,21 +200,21 @@ function settingDialog(exportInfo) {
   dlgMain.etDestination = dlgMain.grpSecondLine.add('edittext', undefined, exportInfo.destination.toString());
 
   dlgMain.etDestination.alignment = 'fill';
-  dlgMain.etDestination.preferredSize.width = strToIntWithDefault( stretDestination, 160 );
+  dlgMain.etDestination.preferredSize.width = strToIntWithDefault(stretDestination, 160);
 
   dlgMain.btnBrowse = dlgMain.grpSecondLine.add('button', undefined, strButtonBrowse);
 
   dlgMain.btnBrowse.alignment = 'right';
 
-  dlgMain.btnBrowse.onClick = function() {
+  dlgMain.btnBrowse.onClick = function () {
     var defaultFolder = dlgMain.etDestination.text;
     testFolder = new Folder(dlgMain.etDestination.text);
     if (!testFolder.exists) {
       defaultFolder = '~';
     }
     var selFolder = Folder.selectDialog(strTitleSelectDestination, defaultFolder);
-    if ( selFolder != null ) {
-          dlgMain.etDestination.text = selFolder.fsName;
+    if (selFolder != null) {
+      dlgMain.etDestination.text = selFolder.fsName;
     }
     dlgMain.defaultElement.active = true;
   };
@@ -228,9 +225,9 @@ function settingDialog(exportInfo) {
   // -- the fourth line in the dialog
   dlgMain.etFileNamePrefix = dlgMain.grpTopLeft.add('edittext', undefined, exportInfo.fileNamePrefix.toString());
   dlgMain.etFileNamePrefix.alignment = 'fill';
-  dlgMain.etFileNamePrefix.preferredSize.width = strToIntWithDefault( stretDestination, 160 );
+  dlgMain.etFileNamePrefix.preferredSize.width = strToIntWithDefault(stretDestination, 160);
 
-// option has been removed, force export visible only
+  // option has been removed, force export visible only
 
   // -- the fifth line in the dialog
   dlgMain.grpTopLeft.add('statictext', undefined, strCheckboxVisibleOnly);
@@ -242,7 +239,7 @@ function settingDialog(exportInfo) {
 
   // -- now a dropdown list
   dlgMain.ddFileType = dlgMain.pnlFileType.add('dropdownlist');
-  dlgMain.ddFileType.preferredSize.width = strToIntWithDefault( strddFileType, 100 );
+  dlgMain.ddFileType.preferredSize.width = strToIntWithDefault(strddFileType, 100);
   dlgMain.ddFileType.alignment = 'left';
 
   // file types in the dropdown
@@ -250,9 +247,9 @@ function settingDialog(exportInfo) {
   dlgMain.ddFileType.add('item', 'PNG-8');
   dlgMain.ddFileType.add('item', 'JPEG');
 
-  dlgMain.ddFileType.onChange = function() {
+  dlgMain.ddFileType.onChange = function () {
     hideAllFileTypePanel();
-    switch(this.selection.index) {
+    switch (this.selection.index) {
 
       case png24Index:
         dlgMain.pnlFileType.pnlOptions.text = strPNG24Options;
@@ -282,7 +279,7 @@ function settingDialog(exportInfo) {
   dlgMain.pnlFileType.pnlOptions = dlgMain.pnlFileType.add('panel', undefined, 'Options');
   dlgMain.pnlFileType.pnlOptions.alignment = 'fill';
   dlgMain.pnlFileType.pnlOptions.orientation = 'stack';
-  dlgMain.pnlFileType.pnlOptions.preferredSize.height = strToIntWithDefault( strpnlOptions, 100 );
+  dlgMain.pnlFileType.pnlOptions.preferredSize.height = strToIntWithDefault(strpnlOptions, 100);
 
   // PNG8 options
   dlgMain.pnlFileType.pnlOptions.grpPNG8Options = dlgMain.pnlFileType.pnlOptions.add('group');
@@ -308,7 +305,7 @@ function settingDialog(exportInfo) {
   dlgMain.pnlFileType.pnlOptions.grpJPEGOptions = dlgMain.pnlFileType.pnlOptions.add('group');
   dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.add('statictext', undefined, strLabelQuality);
   dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.etQuality = dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.add('edittext', undefined, exportInfo.jpegQuality.toString());
-  dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.etQuality.preferredSize.width = strToIntWithDefault( stretQuality, 30 );
+  dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.etQuality.preferredSize.width = strToIntWithDefault(stretQuality, 30);
   dlgMain.pnlFileType.pnlOptions.grpJPEGOptions.visible = (exportInfo.fileType == jpegIndex);
 
   // the right side of the dialog, the ok and cancel buttons
@@ -316,9 +313,9 @@ function settingDialog(exportInfo) {
   dlgMain.grpTopRight.orientation = 'column';
   dlgMain.grpTopRight.alignChildren = 'fill';
 
-  dlgMain.btnRun = dlgMain.grpTopRight.add('button', undefined, strButtonRun );
+  dlgMain.btnRun = dlgMain.grpTopRight.add('button', undefined, strButtonRun);
 
-  dlgMain.btnRun.onClick = function() {
+  dlgMain.btnRun.onClick = function () {
 
     destination = dlgMain.etDestination.text;
     if (destination.length == 0) {
@@ -334,16 +331,16 @@ function settingDialog(exportInfo) {
     dlgMain.close(runButtonID);
   };
 
-  dlgMain.btnCancel = dlgMain.grpTopRight.add('button', undefined, strButtonCancel );
+  dlgMain.btnCancel = dlgMain.grpTopRight.add('button', undefined, strButtonCancel);
 
-  dlgMain.btnCancel.onClick = function() {
+  dlgMain.btnCancel.onClick = function () {
     dlgMain.close(cancelButtonID);
   };
 
   dlgMain.defaultElement = dlgMain.btnRun;
   dlgMain.cancelElement = dlgMain.btnCancel;
 
-     // the bottom of the dialog
+  // the bottom of the dialog
   dlgMain.grpBottom = dlgMain.add('group');
   dlgMain.grpBottom.orientation = 'column';
   dlgMain.grpBottom.alignChildren = 'left';
@@ -352,10 +349,10 @@ function settingDialog(exportInfo) {
   dlgMain.pnlHelp = dlgMain.grpBottom.add('panel');
   dlgMain.pnlHelp.alignment = 'fill';
 
-  dlgMain.etHelp = dlgMain.pnlHelp.add('statictext', undefined, strHelpText, {multiline:true});
+  dlgMain.etHelp = dlgMain.pnlHelp.add('statictext', undefined, strHelpText, { multiline: true });
   dlgMain.etHelp.alignment = 'fill';
 
-  dlgMain.onShow = function() {
+  dlgMain.onShow = function () {
     dlgMain.ddFileType.onChange();
   };
 
@@ -372,13 +369,13 @@ function settingDialog(exportInfo) {
 
   // get setting from dialog
   exportInfo.destination = dlgMain.etDestination.text;
-// kpedt force valid prefix for html
+  // kpedt force valid prefix for html
   if (!dlgMain.etFileNamePrefix.text.length) {
-    exportInfo.fileNamePrefix= 'x';
+    exportInfo.fileNamePrefix = 'x';
   } else {
     exportInfo.fileNamePrefix = webStr(dlgMain.etFileNamePrefix.text);
   }
-// kpedt force visible only
+  // kpedt force visible only
   exportInfo.visibleOnly = true;
   exportInfo.fileType = dlgMain.ddFileType.selection.index;
   exportInfo.icc = dlgMain.cbIcc.value;
@@ -427,7 +424,7 @@ function initExportInfo(exportInfo) {
     exportInfo.destination = new Folder(app.activeDocument.fullName.parent).fsName; // destination folder
     tmp = app.activeDocument.fullName.name;
     exportInfo.fileNamePrefix = decodeURI(tmp.substring(0, tmp.indexOf('.'))); // filename body part
-  } catch(someError) {
+  } catch (someError) {
     exportInfo.destination = '';
     exportInfo.fileNamePrefix = app.activeDocument.name; // filename body part
   }
@@ -440,7 +437,7 @@ function initExportInfo(exportInfo) {
  *        export info object containing more information, the exported image info
  *   Return: <none>, a file on disk
  */
-function saveFile( docRef, fileNameBody, exportInfo) {
+function saveFile(docRef, fileNameBody, exportInfo) {
 
   var fileToSave;
 
@@ -467,130 +464,130 @@ function saveFile( docRef, fileNameBody, exportInfo) {
       break;
 
     default:
-      if ( DialogModes.NO != app.playbackDisplayDialogs ) {
+      if (DialogModes.NO != app.playbackDisplayDialogs) {
         alert(strUnexpectedError);
       }
       break;
-    }
+  }
 
-   function savePng24(fileNameBody, exportInfo, interlacedValue, transparencyValue) {
-    var id6 = charIDToTypeID( "Expr" );
+  function savePng24(fileNameBody, exportInfo, interlacedValue, transparencyValue) {
+    var id6 = charIDToTypeID("Expr");
     var desc3 = new ActionDescriptor();
-    var id7 = charIDToTypeID( "Usng" );
+    var id7 = charIDToTypeID("Usng");
     var desc4 = new ActionDescriptor();
-    var id8 = charIDToTypeID( "Op  " );
-    var id9 = charIDToTypeID( "SWOp" );
-    var id10 = charIDToTypeID( "OpSa" );
-    desc4.putEnumerated( id8, id9, id10 );
-    var id11 = charIDToTypeID( "Fmt " );
-    var id12 = charIDToTypeID( "IRFm" );
-    var id13 = charIDToTypeID( "PN24" );
-    desc4.putEnumerated( id11, id12, id13 );
-    var id14 = charIDToTypeID( "Intr" );
-    desc4.putBoolean( id14, interlacedValue );
-    var id15 = charIDToTypeID( "Trns" );
-    desc4.putBoolean( id15, transparencyValue );
-    var id16 = charIDToTypeID( "Mtt " );
-    desc4.putBoolean( id16, true );
-    var id17 = charIDToTypeID( "MttR" );
-    desc4.putInteger( id17, 255 );
-    var id18 = charIDToTypeID( "MttG" );
-    desc4.putInteger( id18, 255 );
-    var id19 = charIDToTypeID( "MttB" );
-    desc4.putInteger( id19, 255 );
-    var id20 = charIDToTypeID( "SHTM" );
-    desc4.putBoolean( id20, false );
-    var id21 = charIDToTypeID( "SImg" );
-    desc4.putBoolean( id21, true );
-    var id22 = charIDToTypeID( "SSSO" );
-    desc4.putBoolean( id22, false );
-    var id23 = charIDToTypeID( "SSLt" );
+    var id8 = charIDToTypeID("Op  ");
+    var id9 = charIDToTypeID("SWOp");
+    var id10 = charIDToTypeID("OpSa");
+    desc4.putEnumerated(id8, id9, id10);
+    var id11 = charIDToTypeID("Fmt ");
+    var id12 = charIDToTypeID("IRFm");
+    var id13 = charIDToTypeID("PN24");
+    desc4.putEnumerated(id11, id12, id13);
+    var id14 = charIDToTypeID("Intr");
+    desc4.putBoolean(id14, interlacedValue);
+    var id15 = charIDToTypeID("Trns");
+    desc4.putBoolean(id15, transparencyValue);
+    var id16 = charIDToTypeID("Mtt ");
+    desc4.putBoolean(id16, true);
+    var id17 = charIDToTypeID("MttR");
+    desc4.putInteger(id17, 255);
+    var id18 = charIDToTypeID("MttG");
+    desc4.putInteger(id18, 255);
+    var id19 = charIDToTypeID("MttB");
+    desc4.putInteger(id19, 255);
+    var id20 = charIDToTypeID("SHTM");
+    desc4.putBoolean(id20, false);
+    var id21 = charIDToTypeID("SImg");
+    desc4.putBoolean(id21, true);
+    var id22 = charIDToTypeID("SSSO");
+    desc4.putBoolean(id22, false);
+    var id23 = charIDToTypeID("SSLt");
     var list1 = new ActionList();
-    desc4.putList( id23, list1 );
-    var id24 = charIDToTypeID( "DIDr" );
-    desc4.putBoolean( id24, false );
-    var id25 = charIDToTypeID( "In  " );
-    desc4.putPath( id25, new File( exportInfo.destination + "/" + fileNameBody + ".png") );
-    var id26 = stringIDToTypeID( "SaveForWeb" );
-    desc3.putObject( id7, id26, desc4 );
-    executeAction( id6, desc3, DialogModes.NO );
+    desc4.putList(id23, list1);
+    var id24 = charIDToTypeID("DIDr");
+    desc4.putBoolean(id24, false);
+    var id25 = charIDToTypeID("In  ");
+    desc4.putPath(id25, new File(exportInfo.destination + "/" + fileNameBody + ".png"));
+    var id26 = stringIDToTypeID("SaveForWeb");
+    desc3.putObject(id7, id26, desc4);
+    executeAction(id6, desc3, DialogModes.NO);
   }
 
   function savePng8(fileNameBody, exportInfo, interlacedValue, transparencyValue) {
-    var id5 = charIDToTypeID( "Expr" );
+    var id5 = charIDToTypeID("Expr");
     var desc3 = new ActionDescriptor();
-    var id6 = charIDToTypeID( "Usng" );
+    var id6 = charIDToTypeID("Usng");
     var desc4 = new ActionDescriptor();
-    var id7 = charIDToTypeID( "Op  " );
-    var id8 = charIDToTypeID( "SWOp" );
-    var id9 = charIDToTypeID( "OpSa" );
-    desc4.putEnumerated( id7, id8, id9 );
-    var id10 = charIDToTypeID( "Fmt " );
-    var id11 = charIDToTypeID( "IRFm" );
-    var id12 = charIDToTypeID( "PNG8" );
-    desc4.putEnumerated( id10, id11, id12 );
-    var id13 = charIDToTypeID( "Intr" ); //Interlaced
-    desc4.putBoolean( id13, interlacedValue );
-    var id14 = charIDToTypeID( "RedA" );
-    var id15 = charIDToTypeID( "IRRd" );
-    var id16 = charIDToTypeID( "Prcp" ); //Algorithm
-    desc4.putEnumerated( id14, id15, id16 );
-    var id17 = charIDToTypeID( "RChT" );
-    desc4.putBoolean( id17, false );
-    var id18 = charIDToTypeID( "RChV" );
-    desc4.putBoolean( id18, false );
-    var id19 = charIDToTypeID( "AuRd" );
-    desc4.putBoolean( id19, false );
-    var id20 = charIDToTypeID( "NCol" ); //NO. Of Colors
-    desc4.putInteger( id20, 256 );
-    var id21 = charIDToTypeID( "Dthr" ); //Dither
-    var id22 = charIDToTypeID( "IRDt" );
-    var id23 = charIDToTypeID( "Dfsn" ); //Dither type
-    desc4.putEnumerated( id21, id22, id23 );
-    var id24 = charIDToTypeID( "DthA" );
-    desc4.putInteger( id24, 100 );
-    var id25 = charIDToTypeID( "DChS" );
-    desc4.putInteger( id25, 0 );
-    var id26 = charIDToTypeID( "DCUI" );
-    desc4.putInteger( id26, 0 );
-    var id27 = charIDToTypeID( "DChT" );
-    desc4.putBoolean( id27, false );
-    var id28 = charIDToTypeID( "DChV" );
-    desc4.putBoolean( id28, false );
-    var id29 = charIDToTypeID( "WebS" );
-    desc4.putInteger( id29, 0 );
-    var id30 = charIDToTypeID( "TDth" ); //transparency dither
-    var id31 = charIDToTypeID( "IRDt" );
-    var id32 = charIDToTypeID( "None" );
-    desc4.putEnumerated( id30, id31, id32 );
-    var id33 = charIDToTypeID( "TDtA" );
-    desc4.putInteger( id33, 100 );
-    var id34 = charIDToTypeID( "Trns" ); //Transparency
-    desc4.putBoolean( id34, transparencyValue );
-    var id35 = charIDToTypeID( "Mtt " );
-    desc4.putBoolean( id35, true );     //matte
-    var id36 = charIDToTypeID( "MttR" ); //matte color
-    desc4.putInteger( id36, 255 );
-    var id37 = charIDToTypeID( "MttG" );
-    desc4.putInteger( id37, 255 );
-    var id38 = charIDToTypeID( "MttB" );
-    desc4.putInteger( id38, 255 );
-    var id39 = charIDToTypeID( "SHTM" );
-    desc4.putBoolean( id39, false );
-    var id40 = charIDToTypeID( "SImg" );
-    desc4.putBoolean( id40, true );
-    var id41 = charIDToTypeID( "SSSO" );
-    desc4.putBoolean( id41, false );
-    var id42 = charIDToTypeID( "SSLt" );
+    var id7 = charIDToTypeID("Op  ");
+    var id8 = charIDToTypeID("SWOp");
+    var id9 = charIDToTypeID("OpSa");
+    desc4.putEnumerated(id7, id8, id9);
+    var id10 = charIDToTypeID("Fmt ");
+    var id11 = charIDToTypeID("IRFm");
+    var id12 = charIDToTypeID("PNG8");
+    desc4.putEnumerated(id10, id11, id12);
+    var id13 = charIDToTypeID("Intr"); //Interlaced
+    desc4.putBoolean(id13, interlacedValue);
+    var id14 = charIDToTypeID("RedA");
+    var id15 = charIDToTypeID("IRRd");
+    var id16 = charIDToTypeID("Prcp"); //Algorithm
+    desc4.putEnumerated(id14, id15, id16);
+    var id17 = charIDToTypeID("RChT");
+    desc4.putBoolean(id17, false);
+    var id18 = charIDToTypeID("RChV");
+    desc4.putBoolean(id18, false);
+    var id19 = charIDToTypeID("AuRd");
+    desc4.putBoolean(id19, false);
+    var id20 = charIDToTypeID("NCol"); //NO. Of Colors
+    desc4.putInteger(id20, 256);
+    var id21 = charIDToTypeID("Dthr"); //Dither
+    var id22 = charIDToTypeID("IRDt");
+    var id23 = charIDToTypeID("Dfsn"); //Dither type
+    desc4.putEnumerated(id21, id22, id23);
+    var id24 = charIDToTypeID("DthA");
+    desc4.putInteger(id24, 100);
+    var id25 = charIDToTypeID("DChS");
+    desc4.putInteger(id25, 0);
+    var id26 = charIDToTypeID("DCUI");
+    desc4.putInteger(id26, 0);
+    var id27 = charIDToTypeID("DChT");
+    desc4.putBoolean(id27, false);
+    var id28 = charIDToTypeID("DChV");
+    desc4.putBoolean(id28, false);
+    var id29 = charIDToTypeID("WebS");
+    desc4.putInteger(id29, 0);
+    var id30 = charIDToTypeID("TDth"); //transparency dither
+    var id31 = charIDToTypeID("IRDt");
+    var id32 = charIDToTypeID("None");
+    desc4.putEnumerated(id30, id31, id32);
+    var id33 = charIDToTypeID("TDtA");
+    desc4.putInteger(id33, 100);
+    var id34 = charIDToTypeID("Trns"); //Transparency
+    desc4.putBoolean(id34, transparencyValue);
+    var id35 = charIDToTypeID("Mtt ");
+    desc4.putBoolean(id35, true);     //matte
+    var id36 = charIDToTypeID("MttR"); //matte color
+    desc4.putInteger(id36, 255);
+    var id37 = charIDToTypeID("MttG");
+    desc4.putInteger(id37, 255);
+    var id38 = charIDToTypeID("MttB");
+    desc4.putInteger(id38, 255);
+    var id39 = charIDToTypeID("SHTM");
+    desc4.putBoolean(id39, false);
+    var id40 = charIDToTypeID("SImg");
+    desc4.putBoolean(id40, true);
+    var id41 = charIDToTypeID("SSSO");
+    desc4.putBoolean(id41, false);
+    var id42 = charIDToTypeID("SSLt");
     var list1 = new ActionList();
-    desc4.putList( id42, list1 );
-    var id43 = charIDToTypeID( "DIDr" );
-    desc4.putBoolean( id43, false );
-    var id44 = charIDToTypeID( "In  " );
-    desc4.putPath( id44, new File( exportInfo.destination + "/" + fileNameBody + ".png") );
-    var id45 = stringIDToTypeID( "SaveForWeb" );
-    desc3.putObject( id6, id45, desc4 );
-    executeAction( id5, desc3, DialogModes.NO );
+    desc4.putList(id42, list1);
+    var id43 = charIDToTypeID("DIDr");
+    desc4.putBoolean(id43, false);
+    var id44 = charIDToTypeID("In  ");
+    desc4.putPath(id44, new File(exportInfo.destination + "/" + fileNameBody + ".png"));
+    var id45 = stringIDToTypeID("SaveForWeb");
+    desc3.putObject(id6, id45, desc4);
+    executeAction(id5, desc3, DialogModes.NO);
   }
 }
 
@@ -603,9 +600,9 @@ function saveFile( docRef, fileNameBody, exportInfo) {
 function setInvisibleAllArtLayers(obj) {
 
   var artLen = obj.artLayers.length,
-      idx = 0;
+    idx = 0;
 
-  for( idx; idx < artLen; idx += 1) {
+  for (idx; idx < artLen; idx += 1) {
     obj.artLayers[idx].allLocked = false;
     obj.artLayers[idx].visible = false;
   }
@@ -622,13 +619,13 @@ function setInvisibleAllArtLayers(obj) {
 function removeInvisibleArtLayers(doc) {
 
   var len = doc.artLayers.length,
-      idx = len - 1,
-      removed = false;
+    idx = len - 1,
+    removed = false;
 
   while (len) {
     removed = false;
     try {
-      if(!doc.artLayers[idx].visible) {
+      if (!doc.artLayers[idx].visible) {
         doc.artLayers[idx].remove();
         removed = true;
       }
@@ -652,16 +649,16 @@ function removeInvisibleArtLayers(doc) {
  */
 function ungroupLayerSet() {
 
-    var desc = new ActionDescriptor(),
-        ref = new ActionReference();
+  var desc = new ActionDescriptor(),
+    ref = new ActionReference();
 
-    ref.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
-    desc.putReference( charIDToTypeID( "null" ), ref );
-    try {
+  ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+  desc.putReference(charIDToTypeID("null"), ref);
+  try {
 
-      executeAction( stringIDToTypeID( "ungroupLayersEvent" ), desc, DialogModes.NO );
+    executeAction(stringIDToTypeID("ungroupLayersEvent"), desc, DialogModes.NO);
 
-    } catch(e) { }
+  } catch (e) { }
 }
 
 /**
@@ -673,7 +670,7 @@ function ungroupLayerSet() {
 function ungroupAllLayerSets(wrkDoc) {
 
   var setLen = wrkDoc.layerSets.length,
-      idx = setLen - 1;
+    idx = setLen - 1;
 
   while (setLen) {
 
@@ -690,7 +687,7 @@ function ungroupAllLayerSets(wrkDoc) {
  *   Input: number to convert, length
  *   Return: string padded to length
  */
-function catLeftZeros (num, len) {
+function catLeftZeros(num, len) {
 
   var str = num.toString();
 
@@ -712,19 +709,19 @@ function catLeftZeros (num, len) {
 function exportChildren(dupDoc, exportInfo) {
 
   var artLen = dupDoc.artLayers.length,
-      artIdx = 0,
-      fileNameBody,
-      idxStr = '',
-      isJpg = false,
-      isPng = false,
-      layerName,
-      places = artLen.toString().length,
-      pngTrim = false,
-      wrkDoc,
-      xpHeight = 0,
-      xpLeft = 0,
-      xpTop = 0,
-      xpWidth = 0;
+    artIdx = 0,
+    fileNameBody,
+    idxStr = '',
+    isJpg = false,
+    isPng = false,
+    layerName,
+    places = artLen.toString().length,
+    pngTrim = false,
+    wrkDoc,
+    xpHeight = 0,
+    xpLeft = 0,
+    xpTop = 0,
+    xpWidth = 0;
 
   if (exportHeader.extension === '.jpg') {
 
@@ -744,7 +741,7 @@ function exportChildren(dupDoc, exportInfo) {
     }
   }
 
-  for(artIdx; artIdx < artLen; artIdx += 1) {
+  for (artIdx; artIdx < artLen; artIdx += 1) {
 
     dupDoc.artLayers[artIdx].visible = true;
 
@@ -761,18 +758,18 @@ function exportChildren(dupDoc, exportInfo) {
 
       if (pngTrim) {
 
-				if (wrkDoc.activeLayer.isBackgroundLayer == false) { //is it anything but a background layer?
+        if (wrkDoc.activeLayer.isBackgroundLayer == false) { //is it anything but a background layer?
 
-					wrkDoc.trim(TrimType.TRANSPARENT);
-				}
+          wrkDoc.trim(TrimType.TRANSPARENT);
+        }
       }
     }
 
     xpLeft = dupDoc.artLayers[artIdx].bounds[0].value;
-    if (xpLeft < 0) {xpLeft = 0;}
+    if (xpLeft < 0) { xpLeft = 0; }
 
     xpTop = dupDoc.artLayers[artIdx].bounds[1].value;
-    if (xpTop < 0) {xpTop = 0;}
+    if (xpTop < 0) { xpTop = 0; }
 
     xpWidth = app.activeDocument.width.value;
 
@@ -780,10 +777,10 @@ function exportChildren(dupDoc, exportInfo) {
 
     idxStr = catLeftZeros(imgIdx, places);
 
-    fileNameBody = exportInfo.fileNamePrefix + '-' + idxStr + '-' + layerName;
+    fileNameBody = exportInfo.fileNamePrefix + '-' + layerName + '-' + idxStr;
 
     if (fileNameBody.length > 120) {
-      fileNameBody = fileNameBody.substring(0,120);
+      fileNameBody = fileNameBody.substring(0, 120);
     }
     saveFile(wrkDoc, fileNameBody, exportInfo);
 
@@ -792,10 +789,10 @@ function exportChildren(dupDoc, exportInfo) {
     dupDoc.artLayers[artIdx].visible = false;
 
     exportImageData[imgIdx] = {
-      name  : fileNameBody,
-      left  : xpLeft,
-      top   : xpTop,
-      width : xpWidth,
+      name: fileNameBody,
+      left: xpLeft,
+      top: xpTop,
+      width: xpWidth,
       height: xpHeight
     };
     imgIdx += 1;
@@ -833,32 +830,51 @@ function setExportHeader(psd, exportInfo) {
 function writeHtml() {
 
   var htmlOut,
-      images = exportImageData,
-      idx = images.length - 1,
-      hdr = exportHeader;
+    images = exportImageData,
+    idx = images.length - 1,
+    hdr = exportHeader,
+    startStr = '<!DOCTYPE html>\
+<html lang="zh-cmn-Hans">\
+<head>\
+    <meta charset="utf-8">\
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\
+    <title>' + hdr.psdName + '</title>\
+    <meta name="description" content="' + hdr.psdName + '">\
+    <meta name="keywords" content="' + hdr.psdName + '">\
+    <meta name="format-detection" content="telephone=no"/>\
+    <meta name="format-detection" content="email=no"/>\
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>\
+    <meta http-equiv="Cache-Control" content="no-siteapp" />\
+    <meta name="HandheldFriendly" content="true">\
+    <meta name="full-screen" content="yes">\
+    <meta name="x5-fullscreen" content="true">\
+    <meta name="browsermode" content="application">\
+    <meta name="x5-page-mode" content="app">\
+    <meta name="msapplication-tap-highlight" content="no">\
+    <script>\
+    +function(){var clearViewports=function(){var viewports=document.querySelectorAll(\'meta[name=viewport]\');for(var i=0,len=viewports.length;i<len;i++){viewports[i].remove();}};var getContent=function(){var width=' + exportHeader.psdWidth + ';var content=\'width=\'+width+\', user-scalable=no, target-densitydpi=device-dpi\';if(/Android (\d+\.\d+)/.test(navigator.userAgent)){var version=parseFloat(RegExp.$1);if(version>2.3){var phoneScale=parseInt(window.screen.width)/width;if(/MZ-M571C/.test(navigator.userAgent)){content=\'width=\'+width+\', minimum-scale = \'+phoneScale+\', maximum-scale = \'+phoneScale;}else if(/M571C/.test(navigator.userAgent)){content=\'width=\'+width+\', minimum-scale = \'+phoneScale+\', maximum-scale = \'+phoneScale;}else{content=\'width=\'+width+\', minimum-scale = \'+phoneScale+\', maximum-scale = \'+phoneScale+\', target-densitydpi=device-dpi\';}}}return content};var setViewport=function(){var meta=document.createElement("meta");meta.setAttribute("name","viewport");meta.setAttribute("content",getContent());meta.id=\'viewport\';document.querySelector("head").appendChild(meta);};var resetViewport=function(){clearViewports();setViewport();};var init=function(){resetViewport();if(location.protocol!=\'https:\'){if(!document.body){setTimeout(resetViewport,100)}}window.addEventListener(\'resize\',resetViewport);window.addEventListener(\'pageshow\',resetViewport);};init();}();\
+    </script>\
+    <meta name="viewport" content="width=' + exportHeader.psdWidth + ', user-scalable=no, target-densitydpi=device-dpi"/>\
+    <link rel="stylesheet" href="' + hdr.prefix + '.css' + '">\
+</head>\
+<body>\
+    <div id="container">\
+    ', endStr = '\
+    </div>\
+</body>\
+</html>\
+    ';
 
   htmlOut = new File(hdr.outDir + '/' + hdr.prefix + '.html');
   htmlOut.open('w');
-  htmlOut.writeln('<!doctype html>');
-  htmlOut.writeln('<html>');
-  htmlOut.writeln('<head>');
-  htmlOut.writeln('    <meta charset="utf-8">');
-  htmlOut.writeln('    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
-  htmlOut.writeln('    <meta name="viewport" content="width=640"/>');
-  htmlOut.writeln('    <title>' + hdr.psdName +  ' export</title>');
-  htmlOut.writeln('    <link rel="stylesheet" href="' + hdr.prefix + '.css' + '">');
-  htmlOut.writeln('</head>');
-  htmlOut.writeln('<body>');
-  htmlOut.writeln('<div id="container">');
+  htmlOut.writeln(startStr);
 
   // Photoshop extracts top first; we'll put em on the page bottom first
   for (idx; idx >= 0; idx -= 1) {
-      htmlOut.writeln('    <img src="'+ images[idx].name + hdr.extension + '" class=" '+images[idx].name+' ">');
+    htmlOut.writeln('    <img src="' + images[idx].name + hdr.extension + '" class="' + images[idx].name + '">');
   }
 
-  htmlOut.writeln('</div>');
-  htmlOut.writeln('</body>');
-  htmlOut.writeln('</html>');
+  htmlOut.writeln(endStr);
   htmlOut.close();
 }
 
@@ -871,17 +887,17 @@ function writeHtml() {
 function writeCss() {
 
   var cssOut,
-      images = exportImageData,
-      idx = images.length - 1,
-      hdr = exportHeader;
+    images = exportImageData,
+    idx = images.length - 1,
+    hdr = exportHeader;
 
   cssOut = new File(hdr.outDir + '/' + hdr.prefix + '.css');
   cssOut.open('w');
-  cssOut.writeln('/* exported css for ' + hdr.psdName +  ' */');
+  cssOut.writeln('/* exported css for ' + hdr.psdName + ' */');
   cssOut.writeln('\n');
   cssOut.writeln('* { margin: 0px; padding:0px;}');
   cssOut.writeln('\n');
-  cssOut.writeln('body { margin: 0px; padding:0px; background: hsl(229, 47%, 9%); }');
+  cssOut.writeln('body {background: hsl(229, 47%, 9%); }');
   cssOut.writeln('\n');
   cssOut.writeln('#container {');
   cssOut.writeln('    margin: 0 auto;');
@@ -917,14 +933,14 @@ function writeCss() {
 function writeJson() {
 
   var crock,
-      images = exportImageData,
-      idx = images.length - 1,
-      jsOut,
-      hdr = exportHeader;
+    images = exportImageData,
+    idx = images.length - 1,
+    jsOut,
+    hdr = exportHeader;
 
-  jsOut = new File(hdr.outDir + '/' + hdr.prefix + '.js');
+  jsOut = new File(hdr.outDir + '/' + hdr.prefix + '.json');
   jsOut.open('w');
-  jsOut.writeln('/* exported json for ' + hdr.psdName +  ' */');
+  jsOut.writeln('/* exported json for ' + hdr.psdName + ' */');
   jsOut.writeln('\n');
   jsOut.writeln('var imgInput = function () {');
   jsOut.writeln('\n');
@@ -942,10 +958,10 @@ function writeJson() {
     jsOut.writeln('      {');
     jsOut.writeln('         "name"     : "' + images[idx].name + '",');
     jsOut.writeln('         "extension": "' + hdr.extension + '",');
-    jsOut.writeln('         "left"     : '  + images[idx].left + ',');
-    jsOut.writeln('         "top"      : '  + images[idx].top + ',');
-    jsOut.writeln('         "width"    : '  + images[idx].width + ',');
-    jsOut.writeln('         "height"   : '  + images[idx].height);
+    jsOut.writeln('         "left"     : ' + images[idx].left + ',');
+    jsOut.writeln('         "top"      : ' + images[idx].top + ',');
+    jsOut.writeln('         "width"    : ' + images[idx].width + ',');
+    jsOut.writeln('         "height"   : ' + images[idx].height);
 
     crock = idx > 0 ? jsOut.writeln('      },') : jsOut.writeln('      }');
   }
@@ -983,23 +999,23 @@ function writeTxtFiles() {
 function main() {
 
   var docName = '',
-      dupDoc,
-      exportInfo = {},
-      layerCount = 0,
-      layerSetsCount = 0;
+    dupDoc,
+    exportInfo = {},
+    layerCount = 0,
+    layerSetsCount = 0;
 
-  if ( app.documents.length <= 0 ) {
-    if ( DialogModes.NO != app.playbackDisplayDialogs ) {
-      alert( strAlertDocumentMustBeOpened );
+  if (app.documents.length <= 0) {
+    if (DialogModes.NO != app.playbackDisplayDialogs) {
+      alert(strAlertDocumentMustBeOpened);
     }
     return 'cancel'; // quit, returning 'cancel' (dont localize) makes the actions palette not record our script
   }
 
   initExportInfo(exportInfo);
 
-// kpedt this was where descriptorToObject calls were in 'Export layers to files.jsx'
+  // kpedt this was where descriptorToObject calls were in 'Export layers to files.jsx'
 
-  if ( DialogModes.ALL == app.playbackDisplayDialogs ) {
+  if (DialogModes.ALL == app.playbackDisplayDialogs) {
     if (cancelButtonID == settingDialog(exportInfo)) {
       return 'cancel'; // quit, returning 'cancel' (dont localize) makes the actions palette not record our script
     }
@@ -1012,10 +1028,10 @@ function main() {
     layerCount = app.documents[docName].layers.length;
     layerSetsCount = app.documents[docName].layerSets.length;
 
-    if ((layerCount <= 1)&&(layerSetsCount <= 0)) {
+    if ((layerCount <= 1) && (layerSetsCount <= 0)) {
 
-      if ( DialogModes.NO != app.playbackDisplayDialogs ) {
-        alert( strAlertNeedMultipleLayers );
+      if (DialogModes.NO != app.playbackDisplayDialogs) {
+        alert(strAlertNeedMultipleLayers);
         return 'cancel'; // quit, returning 'cancel' (dont localize) makes the actions palette not record our script
       }
     } else {
@@ -1030,13 +1046,13 @@ function main() {
 
       removeInvisibleArtLayers(dupDoc);
 
-      dupDoc.activeLayer = dupDoc.layers[dupDoc.layers.length-1];
+      dupDoc.activeLayer = dupDoc.layers[dupDoc.layers.length - 1];
 
       setInvisibleAllArtLayers(dupDoc);
       exportChildren(dupDoc, exportInfo);
-      dupDoc.close( SaveOptions.DONOTSAVECHANGES );
+      dupDoc.close(SaveOptions.DONOTSAVECHANGES);
 
-      if ( DialogModes.ALL == app.playbackDisplayDialogs ) {
+      if (DialogModes.ALL == app.playbackDisplayDialogs) {
 
         writeTxtFiles();
         app.preferences.rulerUnits = originalUnit;
@@ -1048,7 +1064,7 @@ function main() {
     }
 
   } catch (e1) {
-    if ( DialogModes.NO != app.playbackDisplayDialogs ) {
+    if (DialogModes.NO != app.playbackDisplayDialogs) {
       alert(e1);
     }
 
